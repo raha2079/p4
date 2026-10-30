@@ -1,0 +1,70 @@
+# Build artifacts
+build/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.cmake
+
+# Compiled executables
+Project4Pendulum
+Project4Car
+
+# Object files
+*.o
+*.so
+*.a
+*.dylib
+
+# Log files
+*.log
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Temporary files
+*.tmp
+*.bak
+*.backup
+/tmp/
+
+# Old/backup files we created during development
+car_path.txt
+pendulum_path.txt
+car_path_config5.txt
+car_rrt_config5.txt
+car_kpiece_config5.txt
+
+# Old versions of reports and scripts
+CHECKPOINT_REPORT_TEMPLATE.md
+Checkpoint_Report.md
+FINAL_SUBMISSION_INSTRUCTIONS.md
+SUBMISSION_CHECKLIST.md
+TODO_FOR_FINAL.md
+README
+pendulum_kpiece_torque*.txt
+pendulum_path_torque*.txt
+pendulum_rrt_torque*.txt
+run_all_tests.sh
+run_checkpoint_tests.sh
+run_comprehensive_tests.sh
+visualize_car.py
+visualize_pendulum.py
+
+# Submission ZIP (will be generated)
+*.zip

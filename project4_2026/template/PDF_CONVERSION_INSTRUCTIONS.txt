@@ -1,0 +1,40 @@
+====================================
+HOW TO CONVERT REPORT TO PDF
+====================================
+
+The checkpoint report is provided as both:
+1. Checkpoint_Report_FINAL.md (Markdown - original)
+2. Checkpoint_Report_FINAL.html (HTML - with embedded images)
+
+TO CREATE THE PDF:
+------------------
+
+METHOD 1 (Easiest - Using Browser):
+1. Double-click "Checkpoint_Report_FINAL.html" to open in your browser
+2. Press Cmd+P (or File > Print)
+3. Click "Show Details" if needed
+4. Select "Save as PDF" as the destination
+5. Save as "Checkpoint_Report_FINAL.pdf"
+
+METHOD 2 (Using Preview):
+1. Open "Checkpoint_Report_FINAL.html" in Safari
+2. File > Export as PDF
+3. Save as "Checkpoint_Report_FINAL.pdf"
+
+The HTML file (2.0 MB) has all three figures embedded:
+- pendulum_rrt_vs_kpiece.png
+- pendulum_torque_analysis.png
+- car_multiple_configs.png
+
+====================================
+SUBMISSION FILES READY
+====================================
+
+Your submission includes:
+✓ Source code (src/*.cpp, src/*.h)
+✓ Report (Checkpoint_Report_FINAL.md + .html)
+✓ Three figure images (*.png)
+✓ All 16 test result files
+✓ Build system (CMakeLists.txt)
+
+Just convert the HTML to PDF and you're ready to submit!
