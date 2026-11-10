@@ -21,6 +21,9 @@
 // Your implementation of RG-RRT
 #include "RG-RRT.h"
 
+// Rahariana planner
+#include "Rahariana.h"
+
 // Your projection for the pendulum
 class PendulumProjection : public ompl::base::ProjectionEvaluator
 {
@@ -157,6 +160,12 @@ void planPendulum(ompl::control::SimpleSetupPtr &ss, int choice)
         planner = std::make_shared<ompl::control::RGRRT>(ss->getSpaceInformation());
         std::cout << "Using RG-RRT planner" << std::endl;
     }
+    else if (choice == 4)
+    {
+        // Rahariana planner
+        planner = std::make_shared<ompl::control::Rahariana>(ss->getSpaceInformation());
+        std::cout << "Using Rahariana planner" << std::endl;
+    }
 
     // Step 2: Set the planner
     ss->setPlanner(planner);
@@ -261,9 +270,10 @@ int main(int /* argc */, char ** /* argv */)
             std::cout << " (1) RRT" << std::endl;
             std::cout << " (2) KPIECE1" << std::endl;
             std::cout << " (3) RG-RRT" << std::endl;
+            std::cout << " (4) Rahariana" << std::endl;
 
             std::cin >> planner;
-        } while (planner < 1 || planner > 3);
+        } while (planner < 1 || planner > 4);
 
         planPendulum(ss, planner);
     }

@@ -18,10 +18,12 @@ message(STATUS "OMPL ${OMPL_VERSION}: ${ompl_DIR}")
 add_executable(Project4Car
   src/Project4Car.cpp
   src/CollisionChecking.cpp
-  src/RG-RRT.cpp)
+  src/RG-RRT.cpp
+  src/Rahariana.cpp)
 add_executable(Project4Pendulum
   src/Project4Pendulum.cpp
-  src/RG-RRT.cpp)
+  src/RG-RRT.cpp
+  src/Rahariana.cpp)
 target_link_libraries(Project4Car PRIVATE ompl::ompl)
 target_link_libraries(Project4Pendulum PRIVATE ompl::ompl)
 set_target_properties(Project4Car Project4Pendulum PROPERTIES
