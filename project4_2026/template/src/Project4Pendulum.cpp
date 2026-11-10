@@ -16,6 +16,7 @@
 #include <ompl/control/spaces/RealVectorControlSpace.h>
 #include <ompl/control/planners/rrt/RRT.h>
 #include <ompl/control/planners/kpiece/KPIECE1.h>
+#include <ompl/tools/benchmark/Benchmark.h>
 
 // Your implementation of RG-RRT
 #include "RG-RRT.h"
@@ -152,10 +153,9 @@ void planPendulum(ompl::control::SimpleSetupPtr &ss, int choice)
     }
     else if (choice == 3)
     {
-        // RG-RRT planner (TODO: implement for final submission)
-        // planner = std::make_shared<ompl::control::RGRRT>(ss->getSpaceInformation());
-        std::cout << "RG-RRT not implemented yet. Using RRT instead." << std::endl;
-        planner = std::make_shared<ompl::control::RRT>(ss->getSpaceInformation());
+        // RG-RRT planner
+        planner = std::make_shared<ompl::control::RGRRT>(ss->getSpaceInformation());
+        std::cout << "Using RG-RRT planner" << std::endl;
     }
 
     // Step 2: Set the planner
@@ -192,9 +192,35 @@ void planPendulum(ompl::control::SimpleSetupPtr &ss, int choice)
     }
 }
 
-void benchmarkPendulum(ompl::control::SimpleSetupPtr &/* ss */)
+void benchmarkPendulum(ompl::control::SimpleSetupPtr &ss)
 {
-    // TODO: Do some benchmarking for the pendulum
+    // Create benchmark object
+    ompl::tools::Benchmark b(*ss, "Pendulum Benchmark");
+
+    // Add RRT planner
+    b.addPlanner(std::make_shared<ompl::control::RRT>(ss->getSpaceInformation()));
+
+    // Add KPIECE1 planner
+    b.addPlanner(std::make_shared<ompl::control::KPIECE1>(ss->getSpaceInformation()));
+
+    // Add RG-RRT planner
+    b.addPlanner(std::make_shared<ompl::control::RGRRT>(ss->getSpaceInformation()));
+
+    // Set up benchmark request
+    ompl::tools::Benchmark::Request req;
+    req.maxTime = 30.0;           // 30 seconds per run
+    req.maxMem = 1000.0;          // 1000 MB memory limit
+    req.runCount = 20;            // 20 runs per planner (as required by PDF)
+    req.displayProgress = true;   // Show progress
+
+    // Run benchmark
+    b.benchmark(req);
+
+    // Save results to file
+    b.saveResultsToFile("pendulum_benchmark.log");
+
+    std::cout << "Benchmark complete! Results saved to pendulum_benchmark.log" << std::endl;
+    std::cout << "Convert to database with: ompl_benchmark_statistics.py pendulum_benchmark.log -d pendulum.db" << std::endl;
 }
 
 int main(int /* argc */, char ** /* argv */)
