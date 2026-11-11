@@ -1,7 +1,7 @@
 ///////////////////////////////////////
 // COMP/ELEC/MECH 450/550
 // Project 4
-// Authors: FILL ME OUT!!
+// Authors: Raha Gharehdahgi(rg152), Ariana Diaz(ad316)
 //////////////////////////////////////
 
 #include "RG-RRT.h"
