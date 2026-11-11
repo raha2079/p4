@@ -25,6 +25,9 @@
 // Your implementation of RG-RRT
 #include "RG-RRT.h"
 
+// Rahariana planner
+#include "Rahariana.h"
+
 // Your projection for the car
 class CarProjection : public ompl::base::ProjectionEvaluator
 {
@@ -214,6 +217,12 @@ void planCar(ompl::control::SimpleSetupPtr &ss, int choice)
         planner = std::make_shared<ompl::control::RGRRT>(ss->getSpaceInformation());
         std::cout << "Using RG-RRT planner" << std::endl;
     }
+    else if (choice == 4)
+    {
+        // Rahariana planner
+        planner = std::make_shared<ompl::control::Rahariana>(ss->getSpaceInformation());
+        std::cout << "Using Rahariana planner" << std::endl;
+    }
 
     // Step 2: Set the planner
     ss->setPlanner(planner);
@@ -262,6 +271,9 @@ void benchmarkCar(ompl::control::SimpleSetupPtr &ss)
 
     // Add RG-RRT planner
     b.addPlanner(std::make_shared<ompl::control::RGRRT>(ss->getSpaceInformation()));
+
+    // Add Rahariana planner
+    b.addPlanner(std::make_shared<ompl::control::Rahariana>(ss->getSpaceInformation()));
 
     // Set up benchmark request
     ompl::tools::Benchmark::Request req;
@@ -343,9 +355,10 @@ int main(int /* argc */, char ** /* argv */)
             std::cout << " (1) RRT" << std::endl;
             std::cout << " (2) KPIECE1" << std::endl;
             std::cout << " (3) RG-RRT" << std::endl;
+            std::cout << " (4) Rahariana" << std::endl;
 
             std::cin >> planner;
-        } while (planner < 1 || planner > 3);
+        } while (planner < 1 || planner > 4);
 
         planCar(ss, planner);
     }
