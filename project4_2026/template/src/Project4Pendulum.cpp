@@ -217,7 +217,7 @@ void benchmarkPendulum(ompl::control::SimpleSetupPtr &ss)
 
     // Set up benchmark request
     ompl::tools::Benchmark::Request req;
-    req.maxTime = 30.0;           // 30 seconds per run
+    req.maxTime = 60.0;           // 60 seconds per run
     req.maxMem = 1000.0;          // 1000 MB memory limit
     req.runCount = 20;            // 20 runs per planner (as required by PDF)
     req.displayProgress = true;   // Show progress
