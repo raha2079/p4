@@ -298,3 +298,25 @@ ompl::base::PlannerStatus ompl::control::RGRRT::solve(const base::PlannerTermina
 
     return solved ? base::PlannerStatus::EXACT_SOLUTION : base::PlannerStatus::TIMEOUT;
 }
+
+void ompl::control::RGRRT::getPlannerData(base::PlannerData &data) const
+{
+    Planner::getPlannerData(data);
+
+    std::vector<Motion *> motions;
+    if (nn_)
+        nn_->list(motions);
+
+    // Add all states and edges to the planner data
+    if (lastGoalMotion_ != nullptr)
+        data.addGoalVertex(base::PlannerDataVertex(lastGoalMotion_->state));
+
+    for (auto *m : motions)
+    {
+        if (m->parent == nullptr)
+            data.addStartVertex(base::PlannerDataVertex(m->state));
+        else
+            data.addEdge(base::PlannerDataVertex(m->parent->state),
+                        base::PlannerDataVertex(m->state));
+    }
+}

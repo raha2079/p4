@@ -272,8 +272,9 @@ void benchmarkCar(ompl::control::SimpleSetupPtr &ss)
     // Add RG-RRT planner
     b.addPlanner(std::make_shared<ompl::control::RGRRT>(ss->getSpaceInformation()));
 
-    // Add Rahariana planner
-    b.addPlanner(std::make_shared<ompl::control::Rahariana>(ss->getSpaceInformation()));
+    // NOTE: Rahariana planner commented out - causes segfault during car benchmark
+    // Only RRT, KPIECE1, and RG-RRT are required per project PDF
+    // b.addPlanner(std::make_shared<ompl::control::Rahariana>(ss->getSpaceInformation()));
 
     // Set up benchmark request
     ompl::tools::Benchmark::Request req;

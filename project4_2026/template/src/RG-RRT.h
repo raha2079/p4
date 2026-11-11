@@ -38,6 +38,9 @@ namespace ompl
             /** Clear all internal data structures */
             void clear() override;
 
+            /** Get planner data (for benchmarking) */
+            void getPlannerData(base::PlannerData &data) const override;
+
             /** Set the duration used for computing reachable sets */
             void setPropagationStepSize(double stepSize)
             {
